@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar myToolBar = (Toolbar) findViewById(R.id.sToolBar);
         setSupportActionBar(myToolBar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, myToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

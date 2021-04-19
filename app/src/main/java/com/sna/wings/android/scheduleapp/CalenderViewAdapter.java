@@ -50,7 +50,7 @@ public class CalenderViewAdapter extends BaseAdapter {
 
         //セルのサイズ指定
         float dp = myContext.getResources().getDisplayMetrics().density;
-        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth()/7, parent.getHeight() / myDateManager.getWeeks());
+        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth()/7, parent.getHeight() / (myDateManager.getWeeks()+1));
         convertView.setLayoutParams(params);
 
         //日付のみを表示する

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -19,45 +18,51 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
+        <Button
             android:id="@+id/monthTittle"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:text="test"
             android:textSize="25sp"
-            android:textColor="@color/white" />
+            android:background="@color/design_default_color_primary"
+            android:textColor="@color/white"
+            tools:tooltipText="@string/tittle_text"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_baseline_today_36"
-            android:layout_marginLeft="50dp"
+            android:layout_marginHorizontal="50dp"
             android:layout_marginVertical="5dp"
             />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <GridView
-        android:id="@+id/calenderDateGrid"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="1dp"
-        android:layout_marginHorizontal="1dp"
-        android:layout_marginVertical="1dp"
-        android:background="@color/white"
-        android:numColumns="7"
-        app:layout_constraintTop_toBottomOf="@+id/sToolBar"/>
+        android:fitsSystemWindows="true"
+        android:background="@color/gray"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_constraintTop_toBottomOf="@+id/sToolBar">
 
-    <GridView
-        android:id="@+id/calenderGrid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="1dp"
-        android:layout_marginHorizontal="1dp"
-        android:layout_marginVertical="1dp"
-        android:background="@color/white"
-        android:numColumns="7"
-        app:layout_constraintTop_toBottomOf="@+id/calenderDateGrid"/>
+        <GridView
+            android:id="@+id/calenderDateGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="7" />
+
+        <GridView
+            android:id="@+id/calenderGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:verticalSpacing="1dp"
+            android:horizontalSpacing="2dp"
+            android:numColumns="7"
+            app:layout_constraintTop_toBottomOf="@id/calenderDateGrid" />
+
+    </RelativeLayout>
+
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -73,10 +78,23 @@
             android:fitsSystemWindows="true"
             android:layout_marginTop="?attr/actionBarSize">
 
-            <TextView
+            <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="test"/>
+                android:layout_height="match_parent">
+                <RadioButton
+                    android:id="@+id/sundayBegin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="日曜始め"/>
+
+                <RadioButton
+                    android:id="@+id/mondayBegin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="月曜始め"/>
+
+            </RadioGroup>
 
         </com.google.android.material.navigation.NavigationView>
 

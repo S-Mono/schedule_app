@@ -9,10 +9,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.GridLayout;
+import android.widget.GridView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView tittleText;
+    private CalenderViewAdapter myCalenderAdapter;
+    private GridView calenderGridView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        tittleText = findViewById(R.id.monthTittle);
+
+        calenderGridView = findViewById(R.id.calenderGrid);
+        myCalenderAdapter = new CalenderViewAdapter(MainActivity.this);
+        calenderGridView.setAdapter(myCalenderAdapter);
+        tittleText.setText(myCalenderAdapter.getTittle());
+
+
     }
 }

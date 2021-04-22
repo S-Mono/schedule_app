@@ -49,7 +49,6 @@ public class CalenderViewAdapter extends BaseAdapter {
         }
 
         //セルのサイズ指定
-        float dp = myContext.getResources().getDisplayMetrics().density;
         GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth()/7, parent.getHeight() / (myDateManager.getWeeks()+1));
         convertView.setLayoutParams(params);
 
@@ -58,8 +57,10 @@ public class CalenderViewAdapter extends BaseAdapter {
         holder.dateText.setText(dateFormat.format(dateArray.get(position)));
 
 
-        //当月以外のセルをグレーアウト
-        if(myDateManager.isCurrentMonth(dateArray.get(position))){
+        //当月以外のセルをグレーアウト、当日はピンクで背景を変更する
+        if(myDateManager.isCurrentDay(dateArray.get(position))){
+            convertView.setBackgroundColor(Color.rgb(255,230, 230));
+        } else if (myDateManager.isCurrentMonth(dateArray.get(position))){
             convertView.setBackgroundColor(Color.WHITE);
         } else {
             convertView.setBackgroundColor(Color.LTGRAY);

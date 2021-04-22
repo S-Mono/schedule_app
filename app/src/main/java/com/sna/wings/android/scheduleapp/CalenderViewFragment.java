@@ -11,14 +11,16 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.TextView;
 
 public class CalenderViewFragment extends Fragment {
 
     private Activity parentActivity;
+    private CalenderViewAdapter myCalenderAdapter;
+    private GridView calenderGridView;
+    private TextView tittleText;
 
-    public CalenderViewFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,12 @@ public class CalenderViewFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_calender_view, container, false);
 
-//        Intent intent = parentActivity.getIntent();
-//
-//        FragmentManager manager = getFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        CalenderViewFragment calenderViewFragment = new CalenderViewFragment();
-//        transaction.replace(R.id.calenderGridViewPager, calenderViewFragment);
-//        transaction.commit();
+        //カレンダー表示処理
+        tittleText = parentActivity.findViewById(R.id.monthTittle);
+        calenderGridView = view.findViewById(R.id.calenderGrid);
+        myCalenderAdapter = new CalenderViewAdapter(parentActivity);
+        calenderGridView.setAdapter(myCalenderAdapter);
+        tittleText.setText(myCalenderAdapter.getTittle());
 
         return view;
     }

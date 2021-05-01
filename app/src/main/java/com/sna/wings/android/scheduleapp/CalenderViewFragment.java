@@ -14,12 +14,18 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class CalenderViewFragment extends Fragment {
 
     private Activity parentActivity;
     private CalenderViewAdapter myCalenderAdapter;
     private GridView calenderGridView;
     private TextView tittleText;
+    private DateManager myDateManager;
+    private List<Date> dateArray = new ArrayList<>();
 
 
     @Override
@@ -36,12 +42,29 @@ public class CalenderViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_calender_view, container, false);
 
         //カレンダー表示処理
-        tittleText = parentActivity.findViewById(R.id.monthTittle);
         calenderGridView = view.findViewById(R.id.calenderGrid);
+
         myCalenderAdapter = new CalenderViewAdapter(parentActivity);
         calenderGridView.setAdapter(myCalenderAdapter);
+
+        //アクションバーに年月を表示する
+        tittleText = parentActivity.findViewById(R.id.monthTittle);
         tittleText.setText(myCalenderAdapter.getTittle());
 
         return view;
+    }
+
+    //翌月表示
+    public void nextMonth(){
+        myDateManager.nextMonth();
+        dateArray = myDateManager.getDays();
+        myCalenderAdapter.notifyDataSetChanged();
+    }
+
+    //前月表示
+    public void prevMonth(){
+        myDateManager.prevMonth();
+        dateArray = myDateManager.getDays();
+        myCalenderAdapter.notifyDataSetChanged();
     }
 }

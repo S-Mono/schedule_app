@@ -25,8 +25,7 @@ public class CalenderViewAdapter extends BaseAdapter {
     }
 
     public CalenderViewAdapter(Context context){
-        myContext = context;
-        myLayoutInflater = LayoutInflater.from(myContext);
+        myLayoutInflater = LayoutInflater.from(context);
         myDateManager = new DateManager();
         dateArray = myDateManager.getDays();
     }
@@ -49,7 +48,7 @@ public class CalenderViewAdapter extends BaseAdapter {
         }
 
         //セルのサイズ指定
-        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth()/7, parent.getHeight() / (myDateManager.getWeeks()+1));
+        GridView.LayoutParams params = new GridView.LayoutParams(parent.getWidth()/7, parent.getHeight() / (myDateManager.getWeeks()+1) -2);
         convertView.setLayoutParams(params);
 
         //日付のみを表示する
@@ -85,7 +84,7 @@ public class CalenderViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position){
-        return 0;
+        return 1;
     }
 
     @Override
@@ -99,17 +98,4 @@ public class CalenderViewAdapter extends BaseAdapter {
         return format.format(myDateManager.myCalender.getTime());
     }
 
-    //翌月表示
-    public void nextMonth(){
-        myDateManager.nextMonth();
-        dateArray = myDateManager.getDays();
-        this.notifyDataSetChanged();
-    }
-
-    //前月表示
-    public void prevMonth(){
-        myDateManager.prevMonth();
-        dateArray = myDateManager.getDays();
-        this.notifyDataSetChanged();
-    }
 }
